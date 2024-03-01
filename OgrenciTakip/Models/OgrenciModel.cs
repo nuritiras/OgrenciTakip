@@ -6,6 +6,5 @@
         public string? Isim { get; set; }
         public string? SoyIsim { get; set; }
         public string? Sinifi { get; set; }
-
     }
 }
