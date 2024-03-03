@@ -22,5 +22,13 @@ namespace OgrenciTakip.Controllers
         {
             return View(ogrenciler);
         }
+        public IActionResult Sil()
+        {
+            return View();
+        }
+        public IActionResult Guncelle()
+        {
+            return View();
+        }
     }
 }
