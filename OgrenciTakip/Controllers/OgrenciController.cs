@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using OgrenciTakip.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace OgrenciTakip.Controllers
 {
@@ -15,8 +16,24 @@ namespace OgrenciTakip.Controllers
         [HttpGet]
         public IActionResult Kayit(OgrenciModel ogrenci)
         {
-            ogrenciler.Add(ogrenci);
-            return RedirectToAction("Index","Ogrenci");
+            //if (ogrenci.OkulNo < 0)
+            //{
+            //    return Content("Geçerli bir okul numarası giriniz.");
+            //}
+            //if (string.IsNullOrEmpty(ogrenci.Isim))
+            //{
+            //    return Content("Öğrenci adı boş bırakılamaz.");
+            //}
+            if (ModelState.IsValid == true)
+            {
+                ogrenciler.Add(ogrenci);
+                return RedirectToAction("Index", "Ogrenci");
+            }
+            else
+            {
+                return View(ogrenci);
+            }
+            
         }
         public IActionResult Listele()
         {
