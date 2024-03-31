@@ -1,50 +1,58 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using OgrenciTakip.Models;
-using Microsoft.AspNetCore.Http;
 
 namespace OgrenciTakip.Controllers
 {
     public class OgrenciController : Controller
     {
-        [HttpGet]
+        static List<OgrenciModel> ogrenciler = new List<OgrenciModel>();
+
+
         public IActionResult Index()
         {
             return View();
         }
-        static List<OgrenciModel> ogrenciler = new List<OgrenciModel>(); 
-        
-        [HttpGet]
+
+        public IActionResult Kayit()
+        {
+            return View();
+        }
+
+        [HttpPost]
         public IActionResult Kayit(OgrenciModel ogrenci)
         {
-            //if (ogrenci.OkulNo < 0)
-            //{
-            //    return Content("Geçerli bir okul numarası giriniz.");
-            //}
-            //if (string.IsNullOrEmpty(ogrenci.Isim))
-            //{
-            //    return Content("Öğrenci adı boş bırakılamaz.");
-            //}
             if (ModelState.IsValid == true)
             {
                 ogrenciler.Add(ogrenci);
-                return RedirectToAction("Index", "Ogrenci");
             }
-            else
-            {
-                return View(ogrenci);
-            }
-            
+            return View();
         }
         public IActionResult Listele()
         {
             return View(ogrenciler);
         }
-        public IActionResult Sil()
+
+        public IActionResult Giris()
         {
             return View();
         }
-        public IActionResult Guncelle()
+
+        [HttpPost]
+        public IActionResult Giris(OgrenciModel ogrenci)
         {
+            foreach (var item in ogrenciler)
+            {
+                if (item.OkulNo == ogrenci.OkulNo &&
+                    item.IsimSoyisim == ogrenci.IsimSoyisim &&
+                    item.Sinifi == ogrenci.Sinifi)
+                {
+                    return RedirectToAction("Listele", "Ogrenci");
+                }
+                else
+                {
+                    return View();
+                }
+            }
             return View();
         }
     }

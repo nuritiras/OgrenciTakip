@@ -4,29 +4,27 @@ namespace OgrenciTakip.Models
 {
     public class OgrenciModel
     {
-        public required int OkulNo { get; set; }
+        [Required(ErrorMessage = "İsim Soyisim alanı boş bırakılamaz.")]
+        [Range(1, 1000, ErrorMessage = "1 ile 1000 arasında olmalı.")]
+        [Display(Name = "Okul Numarası: *")]
+        public int OkulNo { get; set; }
 
-        [Required(ErrorMessage = "Ad alanı boş bırakılamaz.")]
-        [StringLength(50, ErrorMessage = "50 karakterden fazla girilmez.")]
-        public string? Isim { get; set; }
+        [Required(ErrorMessage = "İsim Soyisim alanı boş bırakılamaz.")]
+        [StringLength(50, ErrorMessage = "7 karekterden az, 50 karakterden fazla girilmez.", MinimumLength = 7)]
+        [Display(Name = "İsmi Soyisimi: *")]
+        public string IsimSoyisim { get; set; }
 
-        [Required(ErrorMessage = "Soyad alanı boş bırakılamaz.")]
-        [StringLength(50,ErrorMessage = " 3 ile 50arası karakter giriniz. ", MinimumLength =3)]
-        public string? SoyIsim { get; set; }
+        [Required(ErrorMessage = "Bu alan boş bırakılamaz.")]
+        [Display(Name = "Sınıfı/Şubesi: *")]
+        public string Sinifi { get; set; }
 
-        public string? Sinifi { get; set; }
+        [Required(ErrorMessage = "E-Posta adresi boş bırakılamaz.")]
+        [DataType(DataType.EmailAddress)]
+        [EmailAddress(ErrorMessage = "Geçerli E-Posta adresi giriniz.")]
+        [Display(Name = "E-Posta Adresi: *")]
+        public string Eposta { get; set; }
 
-        [Required(ErrorMessage = "Eposta adresi boş bırakılamaz.")]
-        [EmailAddress(ErrorMessage = "Geçerli eposta adresi giriniz.")]
-        public string? Eposta { get; set; }
-
-        [Phone(ErrorMessage = "Geçerli telefon numarası giriniz.")]
-        public string? Telefon { get; set; }
-
-        [Required(ErrorMessage = "Şifre alanı boş bırakılamaz.")]
-        [RegularExpression(@"^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$", ErrorMessage = "Harf ve sayıdan oluşan 8 karakter giriniz.")]
-        public string? Sifre { get; set; }
-        [Compare("Sifre", ErrorMessage = "Şifreler aynı değil.")]
-        public string? SifreTekrar { get; set; }
-    }
+        [Display(Name = "Okuduğu Alan:")]
+        public string Alani { get; set; }
+     }
 }

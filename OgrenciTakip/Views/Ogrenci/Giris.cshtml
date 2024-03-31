@@ -1,11 +1,11 @@
 ﻿@model OgrenciModel
 
-<h3>Öğrenci Kayıt Ekle:</h3>
+<h3>Öğrenci Girişi:</h3>
 
-<form asp-controller="Ogrenci" asp-action="Kayit" method="post">
+<form asp-controller="Ogrenci" asp-action="Giris" method="post">
     <div class="form-group">
         <label asp-for="OkulNo"></label>
-        <input asp-for="OkulNo" class="form-control" value="1" />
+        <input asp-for="OkulNo" class="form-control" value="1"/>
         <span asp-validation-for="OkulNo" class="text-danger"></span>
     </div>
     <div class="form-group">
@@ -18,19 +18,11 @@
         <input asp-for="Sinifi" class="form-control" />
         <span asp-validation-for="Sinifi" class="text-danger"></span>
     </div>
-    <div class="form-group">
-        <label asp-for="Eposta"></label>
-        <input asp-for="Eposta" class="form-control" />
-        <span asp-validation-for="Eposta" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Alani"></label>
-        <input asp-for="Alani" class="form-control" />
-    </div>
+    
     <span class="text-danger">* olan alanlar boş geçilemez.</span>
     <br />
     <div class="form-group">
-        <button type="submit" class="btn btn-primary">Ekle</button>
-        <button type="reset" class="btn btn-danger">Temizle</button>
+        <button type="submit" class="btn btn-primary">Giriş</button>
+        <a class="btn btn-warning" asp-controller="Ogrenci" asp-action="Kayit" role="button">Kayıt Ol</a>
     </div>
 </form>

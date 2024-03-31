@@ -1,17 +1,13 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
-@model List<OgrenciModel>
+﻿@model List<OgrenciModel>
 
 <table class="table">
     <thead>
         <tr>
             <th scope="col">Okul No</th>
-            <th scope="col">İsim</th>
-            <th scope="col">Soyisim</th>
+            <th scope="col">İsim Soyisim</th>
             <th scope="col">Sınıfı</th>
+            <th scope="col">E-Posta</th>
+            <th scope="col">Alanı</th>
         </tr>
     </thead>
     <tbody>
@@ -19,9 +15,10 @@
         {
             <tr>
                 <th scope="row">@talebe.OkulNo</th>
-                <td>@talebe.Isim </td>
-                <td>@talebe.SoyIsim</td>
+                <td>@talebe.IsimSoyisim </td>               
                 <td>@talebe.Sinifi</td>
+                <td>@talebe.Eposta</td>
+                <td>@talebe.Alani</td>
             </tr>
         }
     </tbody>
