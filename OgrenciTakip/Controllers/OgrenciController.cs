@@ -50,7 +50,7 @@ namespace OgrenciTakip.Controllers
                 }
                 else
                 {
-                    return View();
+                    return Content("Bilgiler uyuşmuyor!");
                 }
             }
             return View();
