@@ -40,18 +40,24 @@ namespace OgrenciTakip.Controllers
         [HttpPost]
         public IActionResult Giris(OgrenciModel ogrenci)
         {
-            foreach (var item in ogrenciler)
+            if (ogrenciler.Count != 0) {
+                foreach (var item in ogrenciler)
+                {
+                    if (item.OkulNo == ogrenci.OkulNo &&
+                        item.IsimSoyisim == ogrenci.IsimSoyisim &&
+                        item.Sinifi == ogrenci.Sinifi)
+                    {
+                        return RedirectToAction("Listele", "Ogrenci");
+                    }
+                    else
+                    {
+                        return Content("Bilgiler uyuşmuyor!");
+                    }
+                }
+            }
+            else
             {
-                if (item.OkulNo == ogrenci.OkulNo &&
-                    item.IsimSoyisim == ogrenci.IsimSoyisim &&
-                    item.Sinifi == ogrenci.Sinifi)
-                {
-                    return RedirectToAction("Listele", "Ogrenci");
-                }
-                else
-                {
-                    return Content("Bilgiler uyuşmuyor!");
-                }
+                return Content("Kayıtlı öğrencimiz yok. ");
             }
             return View();
         }
